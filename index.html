@@ -38,17 +38,36 @@
    </div>
    <script>
      //get a free API from open weather map, by creating an account. then after creaing an account we get our API KEY by clicking the api key.
+const cityName = document.querySelector('.input input');
+const button = document.querySelector('.input button');
+const humidity = document.querySelector('.humidity h2');
+const wind = document.querySelector('.wind h2');
+const temp = document.querySelector('.middle h1');
+const city = document.querySelector('.middle h2');
+const cloud = document.querySelector('.middle img');
+
+
+
 const apiKey = "a74b49d8837b4c9489294217231111";
 const apiUrl = "http://api.weatherapi.com/v1/current.json?key=a74b49d8837b4c9489294217231111&q=ethiopia";
 
 
-async function weather(){
+async function weather(cityName){
   let response = await fetch(apiUrl);
   let data = await response.json();
   console.log(data);
-}
+  console.log(data.location.name);
+  city.textContent = data.location.name;
+  temp.innerHTML = `${data.current.feelslike_c}<span>&#8451;</span>`;
+  wind.textContent = data.current.wind_kph;
+  humidity.textContent = `${data.current.humidity}%`;
+  console.log(cityName.value);
 
-weather();
+}
+button.addEventListener('click', () => {
+  weather(cityName);
+});
+weather(cityName);
 
 
 
