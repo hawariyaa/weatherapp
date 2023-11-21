@@ -1,0 +1,97 @@
+*,*::after,*::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Roboto', 'san-serif';
+}
+.all{
+background-color: green;
+padding-left: 4em;
+padding-right: 4em;
+margin-top: 1em;
+border-radius: 30px;
+}
+.input{
+  display: flex;
+  margin-top: 2em;
+  gap: 1em;
+}
+.input input{
+  width: 25em;
+  height: 3em;
+  border-radius: 20px;
+  flex: 1;
+}
+.input input::placeholder{
+  padding: 0.6em;
+}
+.input button{
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.input button img{
+  width: 15px;
+  height: 15px;
+  margin-top: 1em;
+}
+.middle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.middle img{
+  width: 10em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+.middle h1{
+  font-size: 5em;
+  margin-bottom: 0.3em;
+}
+.middle h2{
+  font-size: 2em;
+}
+.footer{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5em;
+  margin-bottom: 1.5em;
+}
+
+.footer img{
+  width: 2em;
+}
+.humidity{
+  margin-right: 10em;
+}
+.footer h2{
+  display: inline;
+}
+.footer p{
+  margin-left: 2em;
+}
+@media screen and (max-width: 600px){
+  .all{
+  background-color: green;
+  margin-top: 1em;
+  border-radius: 30px;
+  }
+  .input input{
+    width: 12em;
+    height: 3em;
+    border-radius: 20px;
+    flex: 1;
+  }
+}
