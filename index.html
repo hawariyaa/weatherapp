@@ -48,12 +48,13 @@ const cloud = document.querySelector('.middle img');
 
 
 
-const apiKey = "a74b49d8837b4c9489294217231111";
-const apiUrl = "http://api.weatherapi.com/v1/current.json?key=a74b49d8837b4c9489294217231111&q=ethiopia";
 
 
 async function weather(cityName){
-  let response = await fetch(apiUrl);
+  const apiKey = "a74b49d8837b4c9489294217231111";
+  const apiUrl = "http://api.weatherapi.com/v1/current.json?key=";
+
+  let response = await fetch(${apiUrl}${apiKey}&q=${cityName});
   let data = await response.json();
   console.log(data);
   console.log(data.location.name);
@@ -65,9 +66,9 @@ async function weather(cityName){
 
 }
 button.addEventListener('click', () => {
-  weather(cityName);
+  weather(cityName.value);
 });
-weather(cityName);
+
 
 
 
