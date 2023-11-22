@@ -18,6 +18,10 @@
        <input type="text" placeholder="search for city">
        <button><img src="./images/search.png" /></button>
      </div>
+     <div class="error">
+       <p> Invalid city or wrong spelling</p>
+     </div>
+     <div class="weather">
      <div class="middle">
        <img src="./images/clear.png">
        <h1>22<span>&#8451;</span></h1>
@@ -36,17 +40,19 @@
        </div>
      </div>
    </div>
+   </div>
    <script>
      //get a free API from open weather map, by creating an account. then after creaing an account we get our API KEY by clicking the api key.
 const cityName = document.querySelector('.input input');
+const image = document.querySelector('.middle img');
 const button = document.querySelector('.input button');
 const humidity = document.querySelector('.humidity h2');
 const wind = document.querySelector('.wind h2');
 const temp = document.querySelector('.middle h1');
 const city = document.querySelector('.middle h2');
 const cloud = document.querySelector('.middle img');
-
-
+const weathe = document.querySelector('.weather');
+const error = document.querySelector('.error');
 
 
 
@@ -54,16 +60,40 @@ async function weather(cityName){
   const apiKey = "a74b49d8837b4c9489294217231111";
   const apiUrl = "http://api.weatherapi.com/v1/current.json?key=";
 
-  let response = await fetch(${apiUrl}${apiKey}&q=${cityName});
+  let response = await fetch(apiUrl + apiKey + `&q=${cityName}`);
+
+  if(response.status == 400){
+    error.style.display = "block";
+    weathe.style.display = "none";
+  }
+ else{
   let data = await response.json();
-  console.log(data);
-  console.log(data.location.name);
   city.textContent = data.location.name;
   temp.innerHTML = `${data.current.feelslike_c}<span>&#8451;</span>`;
-  wind.textContent = data.current.wind_kph;
+  wind.textContent = `${data.current.wind_kph}km/hr`;
   humidity.textContent = `${data.current.humidity}%`;
-  console.log(cityName.value);
-
+  console.log(data.current.condition.text);
+  if(data.current.condition.text == 'Sunny || clear'){
+     image.src = `./images/clear.png`;
+  }
+  else if(data.current.condition.text == 'Light rain'){
+    image.src = `./images/drizzle.png`;
+  }
+  else if(data.current.condition.text.includes('Mist')){
+    image.src = `./images/mist.png`;
+  }
+  else if(data.current.condition.text.includes('rain')){
+    image.src = `./images/rain.png`
+  }
+  else if(data.current.condition.text.includes('cloud')){
+    image.src = `./images/clouds.png`;
+  }
+  else if(data.current.condition.text.includes('snow')){
+    image.src = `./images/snow.png`;
+  }
+ error.style.display = "none";
+ weathe.style.display = "block";
+}
 }
 button.addEventListener('click', () => {
   weather(cityName.value);

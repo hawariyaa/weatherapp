@@ -30,7 +30,15 @@ border-radius: 30px;
   flex: 1;
 }
 .input input::placeholder{
-  padding: 0.6em;
+  padding-left: 2em;
+}
+.input input{
+  padding-left: 2em;
+  margin-bottom:2em;
+}
+.error{
+  margin-bottom: 1em;
+  display: none;
 }
 .input button{
   border: 0;
@@ -82,16 +90,29 @@ border-radius: 30px;
 .footer p{
   margin-left: 2em;
 }
+.weather{
+  display: none;
+}
 @media screen and (max-width: 600px){
   .all{
+  width: 18em;
+  height: 40em;
   background-color: green;
   margin-top: 1em;
   border-radius: 30px;
   }
   .input input{
-    width: 12em;
+    width: 3em;
     height: 3em;
     border-radius: 20px;
     flex: 1;
+  }
+  .humidity{
+    position: absolute;
+    left: 5em;
+  }
+  .wind{
+    position: absolute;
+    left: 12em;
   }
 }
